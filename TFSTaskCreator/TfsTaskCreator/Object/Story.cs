@@ -4,14 +4,12 @@
 
     public class Story
     {
-        private readonly int id;
-        private readonly string title;
+        private int id;
+        private string title;
         private readonly Repository<string> taskRepository;
 
-        public Story(int id, string title)
+        public Story()
         {
-            this.id = id;
-            this.title = title;
             this.taskRepository = new Repository<string>();
         }
 
@@ -21,6 +19,10 @@
             {
                 return this.id;
             }
+            set
+            {
+                this.id = value;
+            }
         }
 
         public string Title
@@ -28,6 +30,10 @@
             get
             {
                 return this.title;
+            }
+            set
+            {
+                this.title = value;
             }
         }
 

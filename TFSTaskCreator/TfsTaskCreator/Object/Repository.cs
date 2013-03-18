@@ -1,4 +1,4 @@
-﻿namespace TfsTaskCreator
+﻿namespace TfsTaskCreator.Object
 {
     using System.Collections.Generic;
 

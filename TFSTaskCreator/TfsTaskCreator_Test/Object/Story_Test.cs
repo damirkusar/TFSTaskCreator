@@ -17,7 +17,7 @@
         [TestInitialize]
         public void Setup()
         {
-            this.story = new Story(12345, "StoryTitle");
+            this.story = new Story { Id = 12345, Title = "StoryTitle" };
             this.task = new Task(this.story.Id, this.story.Title);
         }
 

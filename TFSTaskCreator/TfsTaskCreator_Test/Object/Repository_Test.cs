@@ -1,8 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace TfsTaskCreator_Test
+﻿namespace TfsTaskCreator_Test.Object
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     using TfsTaskCreator;
+    using TfsTaskCreator.Object;
 
     [TestClass]
     public class Repository_Test
@@ -12,7 +13,7 @@ namespace TfsTaskCreator_Test
         [TestInitialize]
         public void Setup()
         {
-            stringRepository = new Repository<string>();
+            this.stringRepository = new Repository<string>();
         }
 
         [TestMethod]
