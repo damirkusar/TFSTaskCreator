@@ -1,6 +1,6 @@
 ﻿<Server>
   <TFSServer>
-    http://pathToYourTFSServer:Port
+    http://pathToYourTFSServer:Port/Path
   </TFSServer>
   <TeamProject>
     NameOfYourTeamProject
