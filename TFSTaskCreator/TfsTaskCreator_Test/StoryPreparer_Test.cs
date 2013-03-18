@@ -9,6 +9,7 @@ namespace TfsTaskCreator_Test
     using TfsTaskCreator.Object;
 
     [TestClass]
+    [DeploymentItem("Settings/Server.xml")]
     public class StoryPreparer_Test
     {
         private StoryPreparer storyPreparer;
@@ -20,9 +21,19 @@ namespace TfsTaskCreator_Test
         }
 
         [TestMethod]
+        public void IdSplitter_1ID_RepositoryShouldContainTheCorrectIDAndStoryName()
+        {
+            const int Id1 = 230088;
+            this.storyPreparer.IdSplitter(Id1.ToString(CultureInfo.InvariantCulture));
+            Story s = this.storyPreparer.GetStoryWithId(Id1);
+            Assert.AreEqual(s.Id, Id1);
+            Assert.AreEqual("Integrate IC 0.77", s.Title);
+        }
+
+        [TestMethod]
         public void IdSplitter_1ID_RepositoryShouldContainTheCorrectID()
         {
-            const int Id1 = 12345;
+            const int Id1 = 230088;
             this.storyPreparer.IdSplitter(Id1.ToString(CultureInfo.InvariantCulture));
             Story s = this.storyPreparer.GetStoryWithId(Id1);
             Assert.AreEqual(s.Id, Id1);
@@ -31,8 +42,8 @@ namespace TfsTaskCreator_Test
         [TestMethod]
         public void IdSplitter_2IDsSeparatedWithSpace_RepositoryShouldContainTheCorrectIDs()
         {
-            const int Id1 = 12345;
-            const int Id2 = 23456;
+            const int Id1 = 230088;
+            const int Id2 = 230089;
 
             string ids = string.Format("{0} {1}", Id1, Id2);
 
@@ -48,8 +59,8 @@ namespace TfsTaskCreator_Test
         [TestMethod]
         public void IdSplitter_2IDsSeparatedWithComma_RepositoryShouldContainTheCorrectIDs()
         {
-            const int Id1 = 12345;
-            const int Id2 = 23456;
+            const int Id1 = 230088;
+            const int Id2 = 230089;
 
             string ids = string.Format("{0},{1}", Id1, Id2);
 
@@ -65,8 +76,8 @@ namespace TfsTaskCreator_Test
         [TestMethod]
         public void IdSplitter_2IDsSeparatedWithCommaAndSpaces_RepositoryShouldContainTheCorrectIDs()
         {
-            const int Id1 = 12345;
-            const int Id2 = 23456;
+            const int Id1 = 230088;
+            const int Id2 = 230089;
 
             string ids = string.Format("{0}, {1}", Id1, Id2);
 
@@ -82,8 +93,8 @@ namespace TfsTaskCreator_Test
         [TestMethod]
         public void IdSplitter_2IDsSeparatedWithCommaAndMoreSpaces_RepositoryShouldContainTheCorrectIDs()
         {
-            const int Id1 = 12345;
-            const int Id2 = 23456;
+            const int Id1 = 230088;
+            const int Id2 = 230089;
 
             string ids = string.Format("{0}  ,  {1}", Id1, Id2);
 
@@ -96,13 +107,14 @@ namespace TfsTaskCreator_Test
             Assert.AreEqual(s2.Id, Id2);
         }
 
+
         [TestMethod]
         public void IdSplitter_4IDsSeparatedWithCommaAndSpaces_RepositoryShouldContainTheCorrectIDs()
         {
-            const int Id1 = 12345;
-            const int Id2 = 23456;
-            const int Id3 = 25558;
-            const int Id4 = 78889;
+            const int Id1 = 230088;
+            const int Id2 = 230089;
+            const int Id3 = 230090;
+            const int Id4 = 136442;
 
             string ids = string.Format("{0} , {1}, {2}    {3}", Id1, Id2, Id3, Id4);
 
@@ -124,8 +136,8 @@ namespace TfsTaskCreator_Test
         [TestMethod]
         public void ReplaceCommasInStrings_2IDsSeparatedWithSpaces_IdsShouldBeSeparatedByComma()
         {
-            const int Id1 = 12345;
-            const int Id2 = 23456;
+            const int Id1 = 230088;
+            const int Id2 = 230089;
 
             string input = string.Format("{0},{1}", Id1, Id2);
             string output = this.storyPreparer.ReplaceCommasInStringsWithSpaces(input);

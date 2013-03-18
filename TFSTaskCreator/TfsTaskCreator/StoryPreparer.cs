@@ -55,7 +55,8 @@ namespace TfsTaskCreator
 
         private string GetStoryTitleById(int id)
         {
-            return "";
+            ServerConnector serverConnector = new ServerConnector();
+            return serverConnector.GetWorkItemById(id).Title;
         }
 
         public Story GetStoryWithId(int storyId)
