@@ -1,8 +1,8 @@
 ﻿<Server>
   <TFSServer>
-    
+    http://pathToYourTFSServer:Port
   </TFSServer>
   <TeamProject>
-    
+    NameOfYourTeamProject
   </TeamProject>
 </Server>
