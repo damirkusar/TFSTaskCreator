@@ -10,7 +10,7 @@
             <ColumnDefinition Width="148*"/>
             <ColumnDefinition Width="368*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="23" Margin="66,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="725" ToolTip="Stories separated by coma" Grid.ColumnSpan="4"/>
+        <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="23" Margin="66,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="725" ToolTip="Stories separated by space" Grid.ColumnSpan="4"/>
         <Button x:Name="Prepare" Content="Prepare" HorizontalAlignment="Left" Margin="286,10,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.707,0.5" Grid.Column="3"/>
         <Label Content="Stories" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="51" Height="23"/>
         <ProgressBar x:Name="ProgressBar" HorizontalAlignment="Left" Height="22" Margin="10,303,0,0" VerticalAlignment="Top" Width="783" Grid.ColumnSpan="4"/>
