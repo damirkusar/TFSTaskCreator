@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TfsTaskCreator_Test
@@ -22,7 +24,6 @@ namespace TfsTaskCreator_Test
         {
             this.workItemCreator = new WorkItemCreator();
             taskMock = new Mock<Task>(232804, "[Non-Project]");
-
         }
 
         [TestMethod]
@@ -53,6 +54,36 @@ namespace TfsTaskCreator_Test
             WorkItem item = this.workItemCreator.CreateNewTask(storyId, taskName);
             Assert.AreEqual(string.Format("[SST]({0})", storyId), item.Title);
             this.workItemCreator.SetTaskToRemoved(item);
+        }
+
+        [TestMethod]
+        public void TaskTypes_VerifyThatItem_PBI_IsInList()
+        {
+            Assert.IsTrue(this.workItemCreator.TaskTypes().Contains("Product Backlog Item"), "Product Backlog Item: is not in List");
+        }
+
+        [TestMethod]
+        public void TaskTypes_VerifyThatItem_Task_IsInList()
+        {
+            Assert.IsTrue(this.workItemCreator.TaskTypes().Contains("Task"), "TASK: is not in List");
+        }
+
+        [TestMethod]
+        public void TaskTypes_VerifyThatItem_Impediment_IsInList()
+        {
+            Assert.IsTrue(this.workItemCreator.TaskTypes().Contains("Impediment"), "Impediment: is not in List");
+        }
+
+        [TestMethod]
+        public void TaskTypes_VerifyThatItem_DevIT_IsInList()
+        {
+            Assert.IsTrue(this.workItemCreator.TaskTypes().Contains("DevIT"), "DevIT: is not in List");
+        }
+
+        [TestMethod]
+        public void TaskTypes_VerifyThatItem_SwIT_IsInList()
+        {
+            Assert.IsTrue(this.workItemCreator.TaskTypes().Contains("SwIT"), "SwIT: is not in List");
         }
     }
 }

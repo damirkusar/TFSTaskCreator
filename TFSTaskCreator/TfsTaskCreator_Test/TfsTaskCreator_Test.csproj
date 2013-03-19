@@ -38,6 +38,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.TeamFoundation.Client, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.TeamFoundation.WorkItemTracking.Client, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
@@ -62,6 +63,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Object\Repository_Test.cs" />
     <Compile Include="StoryPreparer_Test.cs" />
+    <Compile Include="StoryRepository_Test.cs" />
+    <Compile Include="WorkflowController_Test.cs" />
     <Compile Include="WorkItemCreator_Test.cs" />
     <Compile Include="ServerXMLParser_Test.cs" />
   </ItemGroup>

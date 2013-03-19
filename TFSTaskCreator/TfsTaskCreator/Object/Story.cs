@@ -4,42 +4,24 @@
 
     public class Story
     {
-        private int id;
-        private string title;
         private readonly Repository<string> taskRepository;
+        private readonly Task task;
 
-        public Story()
+        public Story(int id, string title)
         {
+            this.Id = id;
+            this.Title = title;
+
             this.taskRepository = new Repository<string>();
+            this.task = new Task(this.Id, this.Title);
         }
 
-        public int Id
-        {
-            get
-            {
-                return this.id;
-            }
-            set
-            {
-                this.id = value;
-            }
-        }
+        public int Id { get; set; }
+        public string Title { get; set; }
 
-        public string Title
+        public IEnumerable<string> AllTasks()
         {
-            get
-            {
-                return this.title;
-            }
-            set
-            {
-                this.title = value;
-            }
-        }
-
-        public void AddTaskToCreate(string task)
-        {
-            this.taskRepository.AddToRepository(task);
+            return this.taskRepository.Repo();
         }
 
         public int TaskCount()
@@ -53,5 +35,19 @@
             return repo;
         }
 
+        public void AddAccountingTaskToStory()
+        {
+            this.taskRepository.AddToRepository(this.task.Accounting());
+        }
+
+        public void AddDoDTaskToStory()
+        {
+            this.taskRepository.AddToRepository(this.task.DoD());
+        }
+
+        public void AddSstTaskToStory()
+        {
+            this.taskRepository.AddToRepository(this.task.SST());
+        }
     }
 }

@@ -6,14 +6,14 @@ namespace TfsTaskCreator
 {
     public class StoryPreparer
     {
-        private readonly Repository<Story> storyRepository;
+        private readonly StoryRepository storyRepository;
 
         public StoryPreparer()
         {
-            this.storyRepository = new Repository<Story>();
+            storyRepository = StoryRepository.Instance;
         }
 
-        public void IdSplitter(string storiesInput)
+        public void PrepareStories(string storiesInput)
         {
             string stories = this.ReplaceCommasInStringsWithSpaces(storiesInput);
 
@@ -48,8 +48,8 @@ namespace TfsTaskCreator
             {
                 string storyTitle = this.GetStoryTitleById(id);
 
-                var story = new Story { Id = id, Title = storyTitle };
-                this.storyRepository.AddToRepository(story);
+                var story = new Story(id, storyTitle);
+                storyRepository.AddStoryToRepository(story);
             }
         }
 
@@ -59,9 +59,9 @@ namespace TfsTaskCreator
             return workItemCreator.GetWorkItemById(id).Title;
         }
 
-        public Story GetStoryWithId(int storyId)
+        public Story GetStoryById(int storyId)
         {
-            var stories = this.storyRepository.Repo();
+            var stories = storyRepository.Repository();
             return stories.FirstOrDefault(x => x.Id == storyId);
         }
     }

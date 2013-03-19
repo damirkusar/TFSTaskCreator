@@ -63,6 +63,8 @@
     <Compile Include="StoryPreparer.cs" />
     <Compile Include="Object\Repository.cs" />
     <Compile Include="ServerXMLParser.cs" />
+    <Compile Include="StoryRepository.cs" />
+    <Compile Include="WorkflowController.cs" />
     <Compile Include="WorkItemCreator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

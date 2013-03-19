@@ -1,4 +1,7 @@
-﻿namespace TfsTaskCreator
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace TfsTaskCreator
 {
     using Microsoft.TeamFoundation.WorkItemTracking.Client;
 
@@ -7,12 +10,33 @@
         private readonly ServerConnector serverConnector;
         private readonly Project project;
         private readonly WorkItemStore store;
+        private readonly IList<string> taskTypes;
+
 
         public WorkItemCreator()
         {
+            this.taskTypes = new List<string>();
+
             this.serverConnector = new ServerConnector();
             this.project = serverConnector.Project;
             this.store = serverConnector.Store;
+
+            this.FillTaskTypesIntoList();
+        }
+
+        private void FillTaskTypesIntoList()
+        {
+            var workItemTypeCollection = this.project.WorkItemTypes;
+            for (int i = 0; i < workItemTypeCollection.Count; i++)
+            {
+                var name = workItemTypeCollection[i].Name;
+                this.taskTypes.Add(name);
+            }
+        }
+
+        public IEnumerable<string> TaskTypes()
+        {
+            return this.taskTypes;
         }
 
         public WorkItem GetWorkItemById(int id)
