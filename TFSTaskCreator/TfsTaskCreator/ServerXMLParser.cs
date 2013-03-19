@@ -20,7 +20,8 @@ namespace TfsTaskCreator
 
         public string GetTeamProject()
         {
-            return xml.Element("TeamProject").Value;
+            var teamProject = xml.Element("TeamProject");
+            return teamProject.Value;
         }
     }
 }

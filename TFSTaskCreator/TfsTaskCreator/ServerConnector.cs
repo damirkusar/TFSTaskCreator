@@ -5,25 +5,32 @@ namespace TfsTaskCreator
 {
     public class ServerConnector
     {
-        private ServerXMLParser serverXmlParser;
-        private WorkItemStore SetupServer()
+        private readonly ServerXMLParser serverXmlParser;
+        private readonly string tfsServer;
+        private readonly string teamProject;
+
+        public ServerConnector()
         {
             serverXmlParser = new ServerXMLParser();
-            string tfsServer = serverXmlParser.GetTfsServer();
+            this.tfsServer = serverXmlParser.GetTfsServer();
+            this.teamProject = serverXmlParser.GetTeamProject();
+
+            this.SetupServer();
+            this.SetupProject();
+        }
+
+        public WorkItemStore Store { get; private set; }
+        public Project Project { get; private set; }
+
+        private void SetupServer()
+        {
             var tfs = new TfsTeamProjectCollection(TfsTeamProjectCollection.GetFullyQualifiedUriForName(tfsServer));
-            return tfs.GetService<WorkItemStore>();
+            this.Store = tfs.GetService<WorkItemStore>();
         }
 
-        private WorkItemStore Connect()
+        private void SetupProject()
         {
-            var workItemStore = this.SetupServer();
-            return workItemStore;
-        }
-
-        public WorkItem GetWorkItemById(int id)
-        {
-            var store = this.SetupServer();
-            return store.GetWorkItem(id);
+            this.Project = this.Store.Projects[teamProject];
         }
     }
 }

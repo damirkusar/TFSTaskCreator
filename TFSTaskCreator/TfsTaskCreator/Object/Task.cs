@@ -2,18 +2,18 @@
 {
     public class Task
     {
-        private readonly string storyTitle;
-        private readonly int tfsId;
-
         public Task(int tfsId, string storyTitle)
         {
-            this.storyTitle = storyTitle;
-            this.tfsId = tfsId;
+            this.StoryTitle = storyTitle;
+            this.TfsId = tfsId;
         }
+
+        public int TfsId { get; private set; }
+        public string StoryTitle { get; private set; }
 
         public string Accounting()
         {
-            return string.Format("[{0}]({1})", this.storyTitle, this.tfsId);
+            return string.Format("[{0}]({1})", this.StoryTitle, this.TfsId);
         }
 
         public string DoD()
@@ -23,7 +23,7 @@
 
         public string SST()
         {
-            return string.Format("[SST]({0})", this.tfsId);
+            return string.Format("[SST]({0})", this.TfsId);
         }
     }
 }

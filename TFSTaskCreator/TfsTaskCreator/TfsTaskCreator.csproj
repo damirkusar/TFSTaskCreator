@@ -62,8 +62,8 @@
     <Compile Include="ServerConnector.cs" />
     <Compile Include="StoryPreparer.cs" />
     <Compile Include="Object\Repository.cs" />
-    <Compile Include="Temp.cs" />
     <Compile Include="ServerXMLParser.cs" />
+    <Compile Include="WorkItemCreator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
