@@ -38,5 +38,10 @@ namespace TfsTaskCreator
         {
             return this.repo.Repo().First(x => x.Id == id);
         }
+
+        public void Clear()
+        {
+            this.repo.Repo().Clear();
+        }
     }
 }

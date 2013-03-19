@@ -30,6 +30,14 @@ namespace TfsTaskCreator_Test.Object
         }
 
         [TestMethod]
+        public void ToString_VerifyCorrectToStringOutput()
+        {
+            this.story.AddDoDTaskToStory();
+            this.story.AddAccountingTaskToStory();
+            Assert.AreEqual("12345: StoryTitle", this.story.ToString());
+        }
+
+        [TestMethod]
         public void RepositoryContent_AddSomeTasks_VerifyIfCountCorrect_And_TaskCorrect()
         {
             this.story.AddSstTaskToStory();

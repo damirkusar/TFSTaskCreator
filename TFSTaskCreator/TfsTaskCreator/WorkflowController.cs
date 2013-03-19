@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-
 using Microsoft.TeamFoundation.WorkItemTracking.Client;
-
 using TfsTaskCreator.Object;
 
 namespace TfsTaskCreator
@@ -33,7 +31,14 @@ namespace TfsTaskCreator
 
         public void PrepareStories(string inputOfStories)
         {
+            this.Clear();
             this.storyPreparer.PrepareStories(inputOfStories);
+        }
+
+        private void Clear()
+        {
+            this.createdWorkItems.Clear();
+            this.storyRepository.Clear();
         }
 
         public IEnumerable<Story> GetAllStories()

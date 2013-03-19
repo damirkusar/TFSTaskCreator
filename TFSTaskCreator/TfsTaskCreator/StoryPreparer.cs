@@ -48,15 +48,21 @@ namespace TfsTaskCreator
             {
                 string storyTitle = this.GetStoryTitleById(id);
 
-                var story = new Story(id, storyTitle);
-                storyRepository.AddStoryToRepository(story);
+                if (storyTitle != string.Empty)
+                {
+                    var story = new Story(id, storyTitle);
+                    storyRepository.AddStoryToRepository(story);
+                }
             }
         }
 
         private string GetStoryTitleById(int id)
         {
-            WorkItemCreator workItemCreator = new WorkItemCreator();
-            return workItemCreator.GetWorkItemById(id).Title;
+            var workItemCreator = new WorkItemCreator();
+            var workItemById = workItemCreator.GetWorkItemById(id);
+
+            return workItemById != null ? workItemById.Title : string.Empty;
+
         }
 
         public Story GetStoryById(int storyId)

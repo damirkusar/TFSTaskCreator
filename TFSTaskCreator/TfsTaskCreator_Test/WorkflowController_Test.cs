@@ -5,7 +5,7 @@ using TfsTaskCreator.Object;
 namespace TfsTaskCreator_Test
 {
     [TestClass]
-    [DeploymentItem("Settings/Server.xml")]
+    [DeploymentItem("Server.xml")]
     public class WorkflowController_Test
     {
         private WorkflowController workflowController;

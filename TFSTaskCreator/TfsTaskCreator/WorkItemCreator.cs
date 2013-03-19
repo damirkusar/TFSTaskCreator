@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace TfsTaskCreator
 {
@@ -41,7 +40,14 @@ namespace TfsTaskCreator
 
         public WorkItem GetWorkItemById(int id)
         {
-            return this.store.GetWorkItem(id);
+            try
+            {
+                return this.store.GetWorkItem(id);
+            }
+            catch (DeniedOrNotExistException)
+            {
+                return null;
+            }
         }
 
         public WorkItem CreateNewTask(int storyId, string taskName)
@@ -49,23 +55,26 @@ namespace TfsTaskCreator
             WorkItem workItem = this.project.WorkItemTypes["TASK"].NewWorkItem();
             var userStory = this.GetWorkItemById(storyId);
 
-            workItem.Title = taskName;
-            workItem.Description = "";
-            workItem.AreaPath = userStory.AreaPath;
-            workItem.IterationPath = userStory.IterationPath;
-            workItem.Fields["Activity"].Value = "";
-            workItem.Fields["Original Estimate"].Value = 0;
-            workItem.Fields["Remaining Work"].Value = 0;
-            workItem.Fields["Assigned To"].Value = "";
+            if (userStory != null)
+            {
+                workItem.Title = taskName;
+                workItem.Description = "";
+                workItem.AreaPath = userStory.AreaPath;
+                workItem.IterationPath = userStory.IterationPath;
+                workItem.Fields["Activity"].Value = "";
+                workItem.Fields["Original Estimate"].Value = 0;
+                workItem.Fields["Remaining Work"].Value = 0;
+                workItem.Fields["Assigned To"].Value = "";
 
-            //Create a hierarchy type (Parent-Child) relationship 
-            WorkItemLinkType hierarchyLinkType = serverConnector.Store.WorkItemLinkTypes[CoreLinkTypeReferenceNames.Hierarchy];
+                //Create a hierarchy type (Parent-Child) relationship 
+                WorkItemLinkType hierarchyLinkType = serverConnector.Store.WorkItemLinkTypes[CoreLinkTypeReferenceNames.Hierarchy];
 
-            //Set user story as parent of new task
-            workItem.Links.Add(new WorkItemLink(hierarchyLinkType.ReverseEnd, userStory.Id));
+                //Set user story as parent of new task
+                workItem.Links.Add(new WorkItemLink(hierarchyLinkType.ReverseEnd, userStory.Id));
 
-            //Save the task
-            workItem.Save();
+                //Save the task
+                workItem.Save();
+            }
 
             return workItem;
         }

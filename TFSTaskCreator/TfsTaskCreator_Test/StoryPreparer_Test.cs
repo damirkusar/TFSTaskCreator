@@ -9,7 +9,7 @@ namespace TfsTaskCreator_Test
     using TfsTaskCreator.Object;
 
     [TestClass]
-    [DeploymentItem("Settings/Server.xml")]
+    [DeploymentItem("Server.xml")]
     public class StoryPreparer_Test
     {
         private StoryPreparer storyPreparer;

@@ -13,7 +13,7 @@ namespace TfsTaskCreator_Test
     using TfsTaskCreator.Object;
 
     [TestClass]
-    [DeploymentItem("Settings/Server.xml")]
+    [DeploymentItem("Server.xml")]
     public class WorkItemCreator_Test
     {
         private WorkItemCreator workItemCreator;
@@ -24,6 +24,13 @@ namespace TfsTaskCreator_Test
         {
             this.workItemCreator = new WorkItemCreator();
             taskMock = new Mock<Task>(232804, "[Non-Project]");
+        }
+
+        [TestMethod]
+        public void GetWorkItemById_GetID123_TaskNotPresentInTFS_ShouldReturnNull()
+        {
+            WorkItem story = this.workItemCreator.GetWorkItemById(123);
+            Assert.IsNull(story);
         }
 
         [TestMethod]

@@ -6,7 +6,7 @@ namespace TfsTaskCreator_Test
     using TfsTaskCreator;
 
     [TestClass]
-    [DeploymentItem("Settings/Server.xml")]
+    [DeploymentItem("Server.xml")]
     public class ServerXMLParser_Test
     {
         private ServerXMLParser serverServerXmlParser;
