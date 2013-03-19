@@ -114,6 +114,12 @@ namespace TfsTaskCreator
 
         private void PrepareClick(object sender, RoutedEventArgs e)
         {
+            this.PrepareStories();
+        }
+
+        private void PrepareStories()
+        {
+            this.ListBox.Items.Clear();
             this.wc.PrepareStories(this.TextBox.Text);
             this.DisplayStoriesOnListBox(this.wc.GetAllStories());
             this.TextBox.Clear();
@@ -129,6 +135,11 @@ namespace TfsTaskCreator
 
         private void TextBoxOnKeyDown(object sender, KeyEventArgs keyEventArgs)
         {
+            if (keyEventArgs.Key == Key.Enter)
+            {
+                this.PrepareStories();
+            }
+
             if (!System.Text.RegularExpressions.Regex.IsMatch(keyEventArgs.Key.ToString(), "\\d+"))
             {
                 keyEventArgs.Handled = true;
