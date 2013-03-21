@@ -52,12 +52,14 @@ namespace TfsTaskCreator
 
         public WorkItem CreateNewTask(int storyId, string taskName)
         {
-            WorkItem workItem = this.project.WorkItemTypes["TASK"].NewWorkItem();
+            var workItem = this.project.WorkItemTypes["TASK"].NewWorkItem();
             var userStory = this.GetWorkItemById(storyId);
+
+            var taskTitle = this.CreateValidString(taskName);
 
             if (userStory != null)
             {
-                workItem.Title = taskName;
+                workItem.Title = taskTitle;
                 workItem.Description = "";
                 workItem.AreaPath = userStory.AreaPath;
                 workItem.IterationPath = userStory.IterationPath;
@@ -77,6 +79,18 @@ namespace TfsTaskCreator
             }
 
             return workItem;
+        }
+
+        public string CreateValidString(string taskName)
+        {
+            const string ReplaceWithNone = "";
+            var taskTitle = taskName.Replace("\r\n", ReplaceWithNone).Replace("\n", ReplaceWithNone).Replace("\r", ReplaceWithNone).Replace("\"", ReplaceWithNone);
+            var titleCount = taskTitle.Length;
+            if (titleCount > 75)
+            {
+                return taskTitle.Substring(0, 75);
+            }
+            return taskTitle;
         }
 
         public void SetTaskToRemoved(WorkItem workItem)

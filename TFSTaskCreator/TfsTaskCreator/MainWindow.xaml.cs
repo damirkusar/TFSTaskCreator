@@ -33,6 +33,19 @@ namespace TfsTaskCreator
             this.Create.Click += this.CreateClick;
             this.Create.IsEnabled = false;
             this.ListBox.SelectionChanged += this.ListBoxSelectionChanged;
+            this.ListBox.KeyDown += this.ListBoxKeyDown;
+        }
+
+        void ListBoxKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.A)
+            {
+                this.ListBox.SelectAll();
+            }
+            if (e.Key == Key.Delete)
+            {
+                this.ListBox.SelectedIndex = -1;
+            }
         }
 
         private void ListBoxSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)

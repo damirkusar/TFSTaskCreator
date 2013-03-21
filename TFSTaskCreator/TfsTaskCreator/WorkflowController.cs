@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
+
 using Microsoft.TeamFoundation.WorkItemTracking.Client;
 using TfsTaskCreator.Object;
 
@@ -53,11 +55,18 @@ namespace TfsTaskCreator
 
         public void CreateTasks()
         {
+            this.CreateNewTasks();
+            //var thread = new Thread(this.CreateNewTasks);
+            //thread.Start();
+        }
+
+        private void CreateNewTasks()
+        {
             foreach (var story in this.GetAllStories())
             {
                 foreach (var task in story.AllTasks())
                 {
-                    var workitem = workItemCreator.CreateNewTask(story.Id, task);
+                    var workitem = this.workItemCreator.CreateNewTask(story.Id, task);
                     this.CreatedWorkItems.Add(workitem);
                 }
             }

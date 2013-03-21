@@ -92,5 +92,50 @@ namespace TfsTaskCreator_Test
         {
             Assert.IsTrue(this.workItemCreator.TaskTypes().Contains("SwIT"), "SwIT: is not in List");
         }
+
+        [TestMethod]
+        public void CreateValidString_SendStringWithCarriageReturn_ShouldBeRemoved()
+        {
+            const string InvalidString = "This is the input string \n Return \n should be removed.";
+            const string ValidString = "This is the input string  Return  should be removed.";
+
+            var withoutCarriageReturn = this.workItemCreator.CreateValidString(InvalidString);
+
+            Assert.AreEqual(ValidString, withoutCarriageReturn);
+        }
+
+        [TestMethod]
+        public void CreateValidString_SendStringWithCarriageReturnAndQuote_ShouldBeRemoved()
+        {
+            const string InvalidString = "Event \"Whatever\", shall:\n remove the batch\n.";
+            const string ValidString = "Event Whatever, shall: remove the batch.";
+
+            var result = this.workItemCreator.CreateValidString(InvalidString);
+
+            Assert.AreEqual(ValidString, result);
+        }
+
+        [TestMethod]
+        public void CreateValidString_SendInvalidString_ShouldBeValid()
+        {
+            const string InvalidString = "\rEvent \"Whatever\", shall:\n remove the \r\nbatch\n.";
+            const string ValidString = "Event Whatever, shall: remove the batch.";
+
+            var result = this.workItemCreator.CreateValidString(InvalidString);
+
+            Assert.AreEqual(ValidString, result);
+        }
+
+        [TestMethod]
+        public void CreateValidString_SendInvalidStringWithLengthLargerThan75_ShouldBeValid()
+        {
+            const string InvalidString = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod";
+            const string ValidString = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy ei";
+
+            var result = this.workItemCreator.CreateValidString(InvalidString);
+
+            Assert.AreEqual(ValidString, result);
+            Assert.AreEqual(75, result.Length);
+        }
     }
 }
