@@ -50,6 +50,11 @@
             this.taskRepository.AddToRepository(this.task.SST());
         }
 
+        public void AddUspTaskToStory()
+        {
+            this.taskRepository.AddToRepository(this.task.USP());
+        }
+
         public override string ToString()
         {
             return string.Format("{0}: {1}", this.Id, this.Title);

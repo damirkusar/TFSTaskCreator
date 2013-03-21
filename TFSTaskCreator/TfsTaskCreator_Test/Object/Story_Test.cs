@@ -15,9 +15,30 @@ namespace TfsTaskCreator_Test.Object
         }
 
         [TestMethod]
-        public void AddTasksToCreate_Add1TaskObject_ListShouldContain_1_Object()
+        public void AddDoDTaskToStory_AddTask_ListShouldContain_1_Object()
         {
             this.story.AddDoDTaskToStory();
+            Assert.AreEqual(1, this.story.TaskCount());
+        }
+
+        [TestMethod]
+        public void AddSstTaskToStory_AddTask_ListShouldContain_1_Object()
+        {
+            this.story.AddSstTaskToStory();
+            Assert.AreEqual(1, this.story.TaskCount());
+        }
+
+        [TestMethod]
+        public void AddAccountingTaskToStory_AddTask_ListShouldContain_1_Object()
+        {
+            this.story.AddAccountingTaskToStory();
+            Assert.AreEqual(1, this.story.TaskCount());
+        }
+
+        [TestMethod]
+        public void AddUspTaskToStory_AddTask_ListShouldContain_1_Object()
+        {
+            this.story.AddUspTaskToStory();
             Assert.AreEqual(1, this.story.TaskCount());
         }
 

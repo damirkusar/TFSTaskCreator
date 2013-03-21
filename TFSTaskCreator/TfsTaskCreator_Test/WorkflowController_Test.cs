@@ -36,7 +36,7 @@ namespace TfsTaskCreator_Test
             Story s2 = this.workflowController.GetStoryById(Id2);
             Assert.AreEqual(Id2, s2.Id);
             Assert.AreEqual("[Non-Project]", s2.Title);
-            s2.AddDoDTaskToStory();
+            s2.AddUspTaskToStory();
             Assert.AreEqual(1, s2.TaskCount());
 
             this.workflowController.CreateTasks();

@@ -18,8 +18,9 @@
         <Separator HorizontalAlignment="Left" Height="20" Margin="10,289,0,0" VerticalAlignment="Top" Width="863" Grid.ColumnSpan="4"/>
         <Button x:Name="Create" Content="Create" HorizontalAlignment="Left" Margin="286,303,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.507,2.318" Grid.Column="3"/>
         <ListBox x:Name="ListBox" HorizontalAlignment="Left" Height="242" Margin="10,47,0,0" VerticalAlignment="Top" Width="781" SelectionMode="Multiple" Grid.ColumnSpan="4"/>
-        <CheckBox x:Name="SST" Content="SST" HorizontalAlignment="Left" Margin="284,268,0,0" VerticalAlignment="Top" Grid.Column="3"/>
-        <CheckBox x:Name="Accounting" Content="Accounting" HorizontalAlignment="Left" Margin="284,226,0,0" VerticalAlignment="Top" Grid.Column="3"/>
-        <CheckBox x:Name="DoD" Content="DoD" HorizontalAlignment="Left" Margin="284,247,0,0" VerticalAlignment="Top" Grid.Column="3"/>
+        <CheckBox x:Name="SST" Content="SST" HorizontalAlignment="Left" Margin="284,247,0,0" VerticalAlignment="Top" Grid.Column="3"/>
+        <CheckBox x:Name="Accounting" Content="Accounting" HorizontalAlignment="Left" Margin="284,205,0,0" VerticalAlignment="Top" Grid.Column="3"/>
+        <CheckBox x:Name="DoD" Content="DoD" HorizontalAlignment="Left" Margin="284,226,0,0" VerticalAlignment="Top" Grid.Column="3"/>
+        <CheckBox x:Name="USP" Content="USP" HorizontalAlignment="Left" Margin="284,268,0,0" VerticalAlignment="Top" Grid.Column="3"/>
     </Grid>
 </Window>

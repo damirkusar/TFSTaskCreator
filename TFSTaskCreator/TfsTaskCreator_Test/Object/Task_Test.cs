@@ -36,12 +36,19 @@ namespace TfsTaskCreator_Test.Object
         }
 
         [TestMethod]
+        public void USP_ReadTask_ShouldBe_SST_With_StoryId()
+        {
+            Assert.AreEqual("[USP](12345)", this.task.USP());
+        }
+
+        [TestMethod]
         public void AllTask_GetAllTask_ShouldContain_SST_DoD_Accounting()
         {
             IEnumerable<string> allTasks = this.task.AllTasks();
 
             Assert.IsTrue(allTasks.Any(x => x.Contains("[DoD]")));
             Assert.IsTrue(allTasks.Any(x => x.Contains("[SST](12345)")));
+            Assert.IsTrue(allTasks.Any(x => x.Contains("[USP](12345)")));
             Assert.IsTrue(allTasks.Any(x => x.Contains("[StoryName](12345)")));
         }
     }

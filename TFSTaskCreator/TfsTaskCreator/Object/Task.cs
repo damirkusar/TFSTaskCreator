@@ -20,6 +20,7 @@
             this.tasks.Add(this.Accounting());
             this.tasks.Add(this.DoD());
             this.tasks.Add(this.SST());
+            this.tasks.Add(this.USP());
         }
 
         public int TfsId { get; private set; }
@@ -38,6 +39,11 @@
         public string SST()
         {
             return string.Format("[SST]({0})", this.TfsId);
+        }
+
+        public string USP()
+        {
+            return string.Format("[USP]({0})", this.TfsId);
         }
 
         public IEnumerable<string> AllTasks()

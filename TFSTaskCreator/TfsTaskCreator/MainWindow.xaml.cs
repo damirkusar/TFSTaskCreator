@@ -82,6 +82,7 @@ namespace TfsTaskCreator
                 this.AddAccountingTask(story);
                 this.AddDoDTask(story);
                 this.AddSstTask(story);
+                this.AddUspTask(story);
 
                 this.ProgressBar.Value += 1;
             }
@@ -93,6 +94,15 @@ namespace TfsTaskCreator
             if (isChecked != null && (bool)isChecked)
             {
                 story.AddAccountingTaskToStory();
+            }
+        }
+
+        private void AddUspTask(Story story)
+        {
+            var isChecked = this.USP.IsChecked;
+            if (isChecked != null && (bool)isChecked)
+            {
+                story.AddUspTaskToStory();
             }
         }
 
