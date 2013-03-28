@@ -55,6 +55,26 @@
             this.taskRepository.AddToRepository(this.task.USP());
         }
 
+        public void AddStabilizationSstTaskToStory()
+        {
+            this.taskRepository.AddToRepository(this.task.StabilizationSST());
+        }
+
+        public void AddBuildmasterTaskToStory()
+        {
+            this.taskRepository.AddToRepository(this.task.BuildMaster());
+        }
+
+        public void AddHPQCSstTaskToStory()
+        {
+            this.taskRepository.AddToRepository(this.task.HPQCSst());
+        }
+
+        public void AddHPQCDevTaskToStory()
+        {
+            this.taskRepository.AddToRepository(this.task.HPQCDev());
+        }
+
         public override string ToString()
         {
             return string.Format("{0}: {1}", this.Id, this.Title);

@@ -43,6 +43,34 @@ namespace TfsTaskCreator_Test.Object
         }
 
         [TestMethod]
+        public void AddStabilizationSstTaskToStory_AddTask_ListShouldContain_1_Object()
+        {
+            this.story.AddStabilizationSstTaskToStory();
+            Assert.AreEqual(1, this.story.TaskCount());
+        }
+
+        [TestMethod]
+        public void AddBuildmasterTaskToStory_AddTask_ListShouldContain_1_Object()
+        {
+            this.story.AddBuildmasterTaskToStory();
+            Assert.AreEqual(1, this.story.TaskCount());
+        }
+
+        [TestMethod]
+        public void AddHPQCSstTaskToStory_AddTask_ListShouldContain_1_Object()
+        {
+            this.story.AddHPQCSstTaskToStory();
+            Assert.AreEqual(1, this.story.TaskCount());
+        }
+
+        [TestMethod]
+        public void AddHPQCDevTaskToStory_AddTask_ListShouldContain_1_Object()
+        {
+            this.story.AddHPQCDevTaskToStory();
+            Assert.AreEqual(1, this.story.TaskCount());
+        }
+
+        [TestMethod]
         public void AddTasksToCreate_Add2TaskObject_ListShouldContain_2_Object()
         {
             this.story.AddDoDTaskToStory();

@@ -66,7 +66,6 @@ namespace TfsTaskCreator
         {
             this.TextBox.Clear();
             this.ListBox.Items.Clear();
-            this.ProgressBar.Value = 0;
             this.Accounting.IsChecked = false;
             this.DoD.IsChecked = false;
             this.SST.IsChecked = false;
@@ -74,7 +73,6 @@ namespace TfsTaskCreator
 
         private void AddTasksToStory(ICollection<int> storyIds)
         {
-            this.ProgressBar.Maximum = storyIds.Count;
             foreach (var storyId in storyIds)
             {
                 var story = this.wc.GetStoryById(storyId);
@@ -83,8 +81,46 @@ namespace TfsTaskCreator
                 this.AddDoDTask(story);
                 this.AddSstTask(story);
                 this.AddUspTask(story);
+                this.AddHpqcDevTask(story);
+                this.AddHpqcSstTask(story);
+                this.AddBuildmasterTask(story);
+                this.AddStabilizeSSTTask(story);
+            }
+        }
 
-                this.ProgressBar.Value += 1;
+        private void AddStabilizeSSTTask(Story story)
+        {
+            var isChecked = this.StabilizeSST.IsChecked;
+            if (isChecked != null && (bool)isChecked)
+            {
+                story.AddStabilizationSstTaskToStory();
+            }
+        }
+
+        private void AddBuildmasterTask(Story story)
+        {
+            var isChecked = this.Buildmaster.IsChecked;
+            if (isChecked != null && (bool)isChecked)
+            {
+                story.AddBuildmasterTaskToStory();
+            }
+        }
+
+        private void AddHpqcSstTask(Story story)
+        {
+            var isChecked = this.HPQCSst.IsChecked;
+            if (isChecked != null && (bool)isChecked)
+            {
+                story.AddHPQCSstTaskToStory();
+            }
+        }
+
+        private void AddHpqcDevTask(Story story)
+        {
+            var isChecked = this.HPQCDev.IsChecked;
+            if (isChecked != null && (bool)isChecked)
+            {
+                story.AddHPQCDevTaskToStory();
             }
         }
 

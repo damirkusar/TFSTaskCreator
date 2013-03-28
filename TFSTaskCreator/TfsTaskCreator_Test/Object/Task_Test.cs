@@ -42,6 +42,30 @@ namespace TfsTaskCreator_Test.Object
         }
 
         [TestMethod]
+        public void HPQCDev_ReadTask_ShouldBe_SST_With_StoryId()
+        {
+            Assert.AreEqual("[HPQC Dev]", this.task.HPQCDev());
+        }
+
+        [TestMethod]
+        public void HPQCSST_ReadTask_ShouldBe_SST_With_StoryId()
+        {
+            Assert.AreEqual("[HPQC SST]", this.task.HPQCSst());
+        }
+
+        [TestMethod]
+        public void BuildMaster_ReadTask_ShouldBe_SST_With_StoryId()
+        {
+            Assert.AreEqual("[BuildMaster]", this.task.BuildMaster());
+        }
+
+        [TestMethod]
+        public void StabilizationSST_ReadTask_ShouldBe_SST_With_StoryId()
+        {
+            Assert.AreEqual("[Stabilization SST]", this.task.StabilizationSST());
+        }
+
+        [TestMethod]
         public void AllTask_GetAllTask_ShouldContain_SST_DoD_Accounting()
         {
             IEnumerable<string> allTasks = this.task.AllTasks();
@@ -49,6 +73,10 @@ namespace TfsTaskCreator_Test.Object
             Assert.IsTrue(allTasks.Any(x => x.Contains("[DoD]")));
             Assert.IsTrue(allTasks.Any(x => x.Contains("[SST](12345)")));
             Assert.IsTrue(allTasks.Any(x => x.Contains("[USP](12345)")));
+            Assert.IsTrue(allTasks.Any(x => x.Contains("[HPQC Dev]")));
+            Assert.IsTrue(allTasks.Any(x => x.Contains("[HPQC SST]")));
+            Assert.IsTrue(allTasks.Any(x => x.Contains("[BuildMaster]")));
+            Assert.IsTrue(allTasks.Any(x => x.Contains("[Stabilization SST]")));
             Assert.IsTrue(allTasks.Any(x => x.Contains("[StoryName](12345)")));
         }
     }
