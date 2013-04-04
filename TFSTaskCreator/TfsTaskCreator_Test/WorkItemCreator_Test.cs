@@ -99,7 +99,7 @@ namespace TfsTaskCreator_Test
             const string InvalidString = "This is the input string \n Return \n should be removed.";
             const string ValidString = "This is the input string  Return  should be removed.";
 
-            var withoutCarriageReturn = this.workItemCreator.CreateValidString(InvalidString);
+            var withoutCarriageReturn = this.workItemCreator.CreateValidTaskTitle(InvalidString);
 
             Assert.AreEqual(ValidString, withoutCarriageReturn);
         }
@@ -110,7 +110,7 @@ namespace TfsTaskCreator_Test
             const string InvalidString = "Event \"Whatever\", shall:\n remove the batch\n.";
             const string ValidString = "Event Whatever, shall: remove the batch.";
 
-            var result = this.workItemCreator.CreateValidString(InvalidString);
+            var result = this.workItemCreator.CreateValidTaskTitle(InvalidString);
 
             Assert.AreEqual(ValidString, result);
         }
@@ -121,21 +121,21 @@ namespace TfsTaskCreator_Test
             const string InvalidString = "\rEvent \"Whatever\", shall:\n remove the \r\nbatch\n.";
             const string ValidString = "Event Whatever, shall: remove the batch.";
 
-            var result = this.workItemCreator.CreateValidString(InvalidString);
+            var result = this.workItemCreator.CreateValidTaskTitle(InvalidString);
 
             Assert.AreEqual(ValidString, result);
         }
 
         [TestMethod]
-        public void CreateValidString_SendInvalidStringWithLengthLargerThan75_ShouldBeValid()
+        public void CreateValidString_SendInvalidStringWithLengthLargerThan10_ShouldBeValidAndLength100()
         {
-            const string InvalidString = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod";
-            const string ValidString = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy ei";
+            const string InvalidString = "[[ATRQ30963] If the validity check for a RMC fails before the start of the run, the Analytic System shall:\n- check the availability of a different RMC:\n  - allocate a different RMC if a valid RMC is available\n  - otherwise create a task with medium pri](166274)";
+            const string ValidString = "[[ATRQ30963] If the validity check for a RMC fails before the start of the run, the Analyti](166274)";
 
-            var result = this.workItemCreator.CreateValidString(InvalidString);
+            var result = this.workItemCreator.CreateValidTaskTitle(InvalidString);
 
             Assert.AreEqual(ValidString, result);
-            Assert.AreEqual(75, result.Length);
+            Assert.AreEqual(100, result.Length);
         }
     }
 }

@@ -55,7 +55,7 @@ namespace TfsTaskCreator
             var workItem = this.project.WorkItemTypes["TASK"].NewWorkItem();
             var userStory = this.GetWorkItemById(storyId);
 
-            var taskTitle = this.CreateValidString(taskName);
+            var taskTitle = this.CreateValidTaskTitle(taskName);
 
             if (userStory != null)
             {
@@ -81,14 +81,18 @@ namespace TfsTaskCreator
             return workItem;
         }
 
-        public string CreateValidString(string taskName)
+        public string CreateValidTaskTitle(string taskName)
         {
             const string ReplaceWithNone = "";
             var taskTitle = taskName.Replace("\r\n", ReplaceWithNone).Replace("\n", ReplaceWithNone).Replace("\r", ReplaceWithNone).Replace("\"", ReplaceWithNone);
             var titleCount = taskTitle.Length;
-            if (titleCount > 75)
+            var last7CharactersStartPoint = titleCount - 9;
+            if (titleCount > 100)
             {
-                return taskTitle.Substring(0, 75);
+                var secondPartOfTitle = taskTitle.Substring(last7CharactersStartPoint);
+                var firstPartOfTitle = taskTitle.Substring(0, 91);
+                var validTaskTitle = firstPartOfTitle + secondPartOfTitle;
+                return validTaskTitle;
             }
             return taskTitle;
         }
