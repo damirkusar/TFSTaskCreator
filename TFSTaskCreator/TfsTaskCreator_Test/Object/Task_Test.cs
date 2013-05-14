@@ -20,7 +20,7 @@ namespace TfsTaskCreator_Test.Object
         [TestMethod]
         public void Accounting_ReadTask_ShouldBe_StoryName_With_StoryID()
         {
-            Assert.AreEqual("[StoryName](12345)", this.task.Accounting());
+            Assert.AreEqual("[Acc][StoryName](12345)", this.task.Accounting());
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace TfsTaskCreator_Test.Object
             Assert.IsTrue(allTasks.Any(x => x.Contains("[HPQC SST]")));
             Assert.IsTrue(allTasks.Any(x => x.Contains("[BuildMaster]")));
             Assert.IsTrue(allTasks.Any(x => x.Contains("[Stabilization SST]")));
-            Assert.IsTrue(allTasks.Any(x => x.Contains("[StoryName](12345)")));
+            Assert.IsTrue(allTasks.Any(x => x.Contains("[Acc][StoryName](12345)")));
         }
     }
 }

@@ -48,7 +48,7 @@ namespace TfsTaskCreator_Test
             var storyTitle = taskMock.Object.StoryTitle;
 
             WorkItem item = this.workItemCreator.CreateNewTask(storyId, taskName);
-            Assert.AreEqual(string.Format("[{0}]({1})", storyTitle, storyId), item.Title);
+            Assert.AreEqual(string.Format("[Acc][{0}]({1})", storyTitle, storyId), item.Title);
             this.workItemCreator.SetTaskToRemoved(item);
         }
 

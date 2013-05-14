@@ -32,7 +32,7 @@
 
         public string Accounting()
         {
-            return string.Format("[{0}]({1})", this.StoryTitle, this.TfsId);
+            return string.Format("[Acc][{0}]({1})", this.StoryTitle, this.TfsId);
         }
 
         public string DoD()
